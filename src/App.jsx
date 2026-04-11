@@ -1,5 +1,7 @@
 import AppBar from './components/AppBar.jsx';
+import TopMediaCarousel from './components/TopMediaCarousel.jsx';
 import WhatsAppButton from './components/WhatsAppButton.jsx';
+import { CLUB_SLIDES } from './clubMedia.js';
 
 /** Pexels + Unsplash (ixlib) — short Unsplash URLs often 404; these are verified. */
 const GALLERY = [
@@ -25,14 +27,27 @@ const GALLERY = [
   },
 ];
 
-const HERO_IMAGE =
-  'https://images.pexels.com/photos/6298710/pexels-photo-6298710.jpeg?auto=compress&cs=tinysrgb&w=1200';
-
-const PROGRESS_ITEMS = [
-  { label: 'Kihon (basics)', percent: 88 },
-  { label: 'Kata (forms)', percent: 72 },
-  { label: 'Kumite (sparring readiness)', percent: 65 },
-  { label: 'Fitness & conditioning', percent: 91 },
+const KARATE_ACHIEVEMENTS = [
+  {
+    id: 'ach-shodan',
+    title: 'Shodan (1st dan)',
+    text: 'Earned after years of consistent kihon, kata, and kumite—formal recognition of technical foundation and dojo character.',
+  },
+  {
+    id: 'ach-kata',
+    title: 'Kata excellence',
+    text: 'Placed in regional kata with a classical form—judges noted clarity of line, timing, and breathing.',
+  },
+  {
+    id: 'ach-kumite',
+    title: 'Kumite podium',
+    text: 'Medal in sanctioned point kumite; built on footwork drills and calm decision-making under pressure.',
+  },
+  {
+    id: 'ach-dojo',
+    title: 'Dojo service',
+    text: 'Led warm-ups and mentored beginners—helping new students learn etiquette, safety, and first kata.',
+  },
 ];
 
 const KARATE_STYLE_BLURBS = [
@@ -72,23 +87,15 @@ export default function App() {
   return (
     <div className="app">
       <AppBar />
-      <header className="hero" id="top">
-        <div className="hero__content">
-          <p className="hero__eyebrow">Traditional karate</p>
-          <h1 className="hero__title">Train with focus. Progress with purpose.</h1>
+      <TopMediaCarousel slides={CLUB_SLIDES} />
+      <header className="hero">
+        <div className="hero__content hero__content--solo">
+          <p className="hero__eyebrow">Jamal Karate Club</p>
+          <h1 className="hero__title">JKA — train with focus. Progress with purpose.</h1>
           <p className="hero__lead">
             Build discipline, strength, and technique—one class at a time. Welcome to your
             karate journey.
           </p>
-        </div>
-        <div className="hero__image-wrap">
-          <img
-            className="hero__image"
-            src={HERO_IMAGE}
-            alt="Karate training in the dojo"
-            width={640}
-            height={800}
-          />
         </div>
       </header>
 
@@ -175,43 +182,32 @@ export default function App() {
         </div>
       </section>
 
-      <section className="section section--progress" aria-labelledby="progress-heading">
+      <section
+        className="section section--achievements"
+        id="achievements"
+        aria-labelledby="achievements-heading"
+      >
         <div className="section__inner">
-          <h2 id="progress-heading" className="section__title">
-            Our progress
+          <h2 id="achievements-heading" className="section__title">
+            Achievements in karate
           </h2>
           <p className="section__subtitle">
-            Snapshot of where the squad is focused this season. Numbers are illustrative—replace
-            with your real tracking when you connect a backend.
+            Milestones from the path—belts, competition, and contributions to the dojo. Swap in
+            your own story as your journey grows.
           </p>
-          <ul className="progress-list">
-            {PROGRESS_ITEMS.map((item) => (
-              <li key={item.label} className="progress-list__row">
-                <div className="progress-list__head">
-                  <span className="progress-list__label">{item.label}</span>
-                  <span className="progress-list__value">{item.percent}%</span>
-                </div>
-                <div
-                  className="progress-list__track"
-                  role="progressbar"
-                  aria-valuenow={item.percent}
-                  aria-valuemin={0}
-                  aria-valuemax={100}
-                  aria-label={`${item.label}: ${item.percent} percent`}
-                >
-                  <div
-                    className="progress-list__fill"
-                    style={{ width: `${item.percent}%` }}
-                  />
-                </div>
-              </li>
+          <div className="style-grid">
+            {KARATE_ACHIEVEMENTS.map((item) => (
+              <article key={item.id} className="style-card" id={item.id}>
+                <h3 className="style-card__title">{item.title}</h3>
+                <p className="style-card__text">{item.text}</p>
+              </article>
             ))}
-          </ul>
+          </div>
         </div>
       </section>
 
       <footer className="footer">
-        <p>© {new Date().getFullYear()} Karate App — Osu!</p>
+        <p>© {new Date().getFullYear()} JKA — Jamal Karate Club — Osu!</p>
       </footer>
 
       <WhatsAppButton phone="+923030949729" />

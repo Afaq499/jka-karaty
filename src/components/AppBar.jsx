@@ -105,7 +105,8 @@ export default function AppBar() {
     <header className="app-bar" ref={barRef}>
       <div className="app-bar__inner">
         <a href="#top" className="app-bar__brand">
-          Karate App
+          <span className="app-bar__brand-main">JKA</span>
+          <span className="app-bar__brand-sub">Jamal Karate Club</span>
         </a>
         <nav className="app-bar__nav" aria-label="Main sections">
           <a className="app-bar__link" href="#cardio">
