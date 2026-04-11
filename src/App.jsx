@@ -1,7 +1,9 @@
 import AppBar from './components/AppBar.jsx';
 import TopMediaCarousel from './components/TopMediaCarousel.jsx';
+import VideoSection from './components/VideoSection.jsx';
 import WhatsAppButton from './components/WhatsAppButton.jsx';
 import { CLUB_SLIDES } from './clubMedia.js';
+import { CLUB_VIDEOS } from './clubVideos.js';
 
 /** Pexels + Unsplash (ixlib) — short Unsplash URLs often 404; these are verified. */
 const GALLERY = [
@@ -98,6 +100,8 @@ export default function App() {
           </p>
         </div>
       </header>
+
+      <VideoSection videos={CLUB_VIDEOS} />
 
       <section className="section section--discipline" id="cardio" aria-labelledby="cardio-heading">
         <div className="section__inner">
