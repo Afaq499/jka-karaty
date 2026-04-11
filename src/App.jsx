@@ -1,24 +1,32 @@
 import AppBar from './components/AppBar.jsx';
 import WhatsAppButton from './components/WhatsAppButton.jsx';
 
+/** Pexels + Unsplash (ixlib) — short Unsplash URLs often 404; these are verified. */
 const GALLERY = [
   {
-    src: 'https://images.unsplash.com/photo-1555597673-b3737598e8e9?w=900&q=80',
-    alt: 'Karate practitioner in white gi performing technique',
+    id: 'pex-7045746',
+    src: 'https://images.pexels.com/photos/7045746/pexels-photo-7045746.jpeg?auto=compress&cs=tinysrgb&w=900',
+    alt: 'Karate practitioner in white gi with black belt',
   },
   {
-    src: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=900&q=80',
-    alt: 'Martial arts training stance',
+    id: 'pex-7988241',
+    src: 'https://images.pexels.com/photos/7988241/pexels-photo-7988241.jpeg?auto=compress&cs=tinysrgb&w=900',
+    alt: 'Karate training — punch focus mitts',
   },
   {
-    src: 'https://images.unsplash.com/photo-1599058945522-966782cb6d6f?w=900&q=80',
-    alt: 'Karate dojo training',
+    id: 'pex-6111618',
+    src: 'https://images.pexels.com/photos/6111618/pexels-photo-6111618.jpeg?auto=compress&cs=tinysrgb&w=900',
+    alt: 'Group karate class in the dojo',
   },
   {
-    src: 'https://images.unsplash.com/photo-1564419320461-6870880221ad?w=900&q=80',
+    id: 'unsplash-kick',
+    src: 'https://images.unsplash.com/photo-1564419320461-6870880221ad?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=80',
     alt: 'Karate kick practice',
   },
 ];
+
+const HERO_IMAGE =
+  'https://images.pexels.com/photos/6298710/pexels-photo-6298710.jpeg?auto=compress&cs=tinysrgb&w=1200';
 
 const PROGRESS_ITEMS = [
   { label: 'Kihon (basics)', percent: 88 },
@@ -76,7 +84,7 @@ export default function App() {
         <div className="hero__image-wrap">
           <img
             className="hero__image"
-            src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1200&q=80"
+            src={HERO_IMAGE}
             alt="Karate training in the dojo"
             width={640}
             height={800}
@@ -152,8 +160,15 @@ export default function App() {
           </p>
           <div className="gallery">
             {GALLERY.map((item) => (
-              <figure key={item.src} className="gallery__item">
-                <img src={item.src} alt={item.alt} loading="lazy" width={450} height={300} />
+              <figure key={item.id} className="gallery__item">
+                <img
+                  src={item.src}
+                  alt={item.alt}
+                  loading="lazy"
+                  decoding="async"
+                  width={450}
+                  height={300}
+                />
               </figure>
             ))}
           </div>

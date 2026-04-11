@@ -1,12 +1,21 @@
 :root {
-  --bg: #0a0c0f;
-  --bg-elevated: #12161c;
-  --surface: #1a2029;
-  --text: #e8eaed;
-  --muted: #9aa3af;
-  --accent: #c9a227;
-  --accent-dim: rgba(201, 162, 39, 0.25);
-  --line: rgba(255, 255, 255, 0.08);
+  --bg: #e4eaf1;
+  --bg-elevated: #eef2f7;
+  --surface: #ffffff;
+  --text: #142033;
+  --muted: #5a6b7c;
+  --accent: #c2410c;
+  --accent-dim: rgba(194, 65, 12, 0.2);
+  --line: rgba(20, 32, 51, 0.12);
+  --bar-bg: linear-gradient(135deg, #1e3a5f 0%, #0f2744 100%);
+  --bar-bg-solid: #152a45;
+  --bar-text: #f0f5fa;
+  --bar-muted: #9db4ce;
+  --bar-hover: rgba(255, 255, 255, 0.12);
+  --bar-accent: #fdba74;
+  --shadow-sm: 0 1px 3px rgba(20, 32, 51, 0.08);
+  --shadow-md: 0 8px 30px rgba(20, 32, 51, 0.12);
+  --shadow-lg: 0 20px 50px rgba(20, 32, 51, 0.15);
   --whatsapp: #25d366;
   --whatsapp-hover: #20bd5a;
   font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
@@ -26,6 +35,8 @@ html {
 body {
   margin: 0;
   background: var(--bg);
+  background-image: radial-gradient(ellipse 120% 80% at 50% -20%, #dbe4ee 0%, transparent 55%),
+    radial-gradient(ellipse 80% 50% at 100% 50%, rgba(194, 65, 12, 0.06) 0%, transparent 45%);
   color: var(--text);
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
@@ -45,9 +56,10 @@ img {
   position: sticky;
   top: 0;
   z-index: 500;
-  background: rgba(10, 12, 15, 0.92);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--line);
+  background: var(--bar-bg);
+  background-color: var(--bar-bg-solid);
+  border-bottom: 3px solid var(--accent);
+  box-shadow: var(--shadow-md);
 }
 
 .app-bar__inner {
@@ -62,14 +74,14 @@ img {
 }
 
 .app-bar__brand {
-  color: var(--text);
+  color: var(--bar-text);
   font-weight: 700;
   text-decoration: none;
   letter-spacing: -0.02em;
 }
 
 .app-bar__brand:hover {
-  color: var(--accent);
+  color: var(--bar-accent);
 }
 
 .app-bar__nav {
@@ -80,7 +92,7 @@ img {
 }
 
 .app-bar__link {
-  color: var(--muted);
+  color: var(--bar-muted);
   text-decoration: none;
   font-size: 0.9rem;
   font-weight: 600;
@@ -90,18 +102,21 @@ img {
 }
 
 .app-bar__link:hover {
-  color: var(--text);
-  background: rgba(255, 255, 255, 0.06);
+  color: var(--bar-text);
+  background: var(--bar-hover);
 }
 
 .app-bar__dropdown {
   position: relative;
 }
 
-.app-bar__dropdown-summary {
-  list-style: none;
+.app-bar__karate-btn {
+  margin: 0;
+  border: none;
+  background: none;
   cursor: pointer;
-  color: var(--muted);
+  font: inherit;
+  color: var(--bar-muted);
   font-size: 0.9rem;
   font-weight: 600;
   padding: 0.45rem 0.75rem;
@@ -109,38 +124,25 @@ img {
   transition: color 0.15s ease, background 0.15s ease;
 }
 
-.app-bar__dropdown-summary::-webkit-details-marker {
-  display: none;
+.app-bar__karate-btn:hover {
+  color: var(--bar-text);
+  background: var(--bar-hover);
 }
 
-.app-bar__dropdown-summary:hover {
-  color: var(--text);
-  background: rgba(255, 255, 255, 0.06);
-}
-
-.app-bar__dropdown[open] .app-bar__dropdown-summary {
-  color: var(--accent);
-  background: var(--accent-dim);
+.app-bar__karate-btn[aria-expanded='true'] {
+  color: var(--bar-accent);
+  background: rgba(253, 186, 116, 0.18);
 }
 
 .app-bar__dropdown-panel {
-  position: absolute;
-  top: calc(100% + 0.35rem);
-  right: 0;
-  min-width: 220px;
   padding: 0.4rem;
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: 10px;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
-  z-index: 10;
-}
-
-@media (max-width: 640px) {
-  .app-bar__dropdown-panel {
-    right: auto;
-    left: 0;
-  }
+  box-shadow: var(--shadow-lg);
+  z-index: 600;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .app-bar__dropdown-link {
@@ -154,7 +156,7 @@ img {
 }
 
 .app-bar__dropdown-link:hover {
-  background: rgba(255, 255, 255, 0.08);
+  background: var(--bg-elevated);
   color: var(--accent);
 }
 
@@ -201,7 +203,7 @@ img {
   border-radius: 12px;
   overflow: hidden;
   border: 1px solid var(--line);
-  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.45);
+  box-shadow: var(--shadow-lg);
 }
 
 .hero__image {
@@ -233,7 +235,7 @@ img {
 
 .section--karate {
   border-top: 1px solid var(--line);
-  background: linear-gradient(180deg, var(--bg) 0%, var(--bg-elevated) 100%);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.5) 0%, var(--bg-elevated) 100%);
 }
 
 .discipline-points {
@@ -306,6 +308,7 @@ img {
   overflow: hidden;
   border: 1px solid var(--line);
   background: var(--surface);
+  box-shadow: var(--shadow-sm);
 }
 
 .gallery__item img {
@@ -356,7 +359,7 @@ img {
 .progress-list__track {
   height: 10px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(20, 32, 51, 0.1);
   overflow: hidden;
 }
 
@@ -401,7 +404,7 @@ img {
 }
 
 .wa-button:focus-visible {
-  outline: 2px solid #fff;
+  outline: 2px solid var(--text);
   outline-offset: 3px;
 }
 
