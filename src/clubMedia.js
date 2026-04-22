@@ -5,6 +5,6 @@ export const CLUB_SLIDES = Object.entries(modules)
   .sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true }))
   .map(([path, mod]) => ({
     src: mod.default,
-    alt: 'Jamal Karate Club',
+    alt: 'Japan Karate Association Pakistan',
     id: path,
   }));

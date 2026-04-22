@@ -23,7 +23,7 @@ export default function VideoSection({ videos }) {
           Club videos
         </h2>
         <p className="section__subtitle section__subtitle--video">
-          Watch training moments from JKA. Use the arrows to switch clips.
+          Watch training moments from Japan Karate Association Pakistan. Use the arrows to switch clips.
         </p>
 
         <div className="video-section__row">
