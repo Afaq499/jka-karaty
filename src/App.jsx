@@ -4,6 +4,12 @@ import VideoSection from './components/VideoSection.jsx';
 import WhatsAppButton from './components/WhatsAppButton.jsx';
 import { CLUB_SLIDES } from './clubMedia.js';
 import { CLUB_VIDEOS } from './clubVideos.js';
+import {
+  ADDRESS_LINES,
+  CHAIRMAN,
+  ORG_DISPLAY_NAME,
+  WHATSAPP_PHONE_E164,
+} from './siteConfig.js';
 
 /** Pexels + Unsplash (ixlib) — short Unsplash URLs often 404; these are verified. */
 const GALLERY = [
@@ -92,8 +98,8 @@ export default function App() {
       <TopMediaCarousel slides={CLUB_SLIDES} />
       <header className="hero">
         <div className="hero__content hero__content--solo">
-          <p className="hero__eyebrow">Jamal Karate Club</p>
-          <h1 className="hero__title">JKA — train with focus. Progress with purpose.</h1>
+          <p className="hero__eyebrow">{ORG_DISPLAY_NAME}</p>
+          <h1 className="hero__title">Train with focus. Progress with purpose.</h1>
           <p className="hero__lead">
             Build discipline, strength, and technique—one class at a time. Welcome to your
             karate journey.
@@ -210,11 +216,28 @@ export default function App() {
         </div>
       </section>
 
-      <footer className="footer">
-        <p>© {new Date().getFullYear()} JKA — Jamal Karate Club — Osu!</p>
+      <footer className="footer" id="contact">
+        <div className="footer__inner">
+          <p className="footer__org">{ORG_DISPLAY_NAME}</p>
+          <p className="footer__chair">
+            <strong>{CHAIRMAN.name}</strong>
+            <br />
+            {CHAIRMAN.title}
+          </p>
+          <address className="footer__address">
+            {ADDRESS_LINES.map((line) => (
+              <span key={line} className="footer__address-line">
+                {line}
+              </span>
+            ))}
+          </address>
+          <p className="footer__copy">
+            © {new Date().getFullYear()} {ORG_DISPLAY_NAME} — Osu!
+          </p>
+        </div>
       </footer>
 
-      <WhatsAppButton phone="+923030949729" />
+      <WhatsAppButton phone={WHATSAPP_PHONE_E164} />
     </div>
   );
 }

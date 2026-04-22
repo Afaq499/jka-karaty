@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { ORG_DISPLAY_NAME } from '../siteConfig.js';
 
 const KARATE_STYLES = [
   { id: 'karate-shotokan', label: 'Shotokan' },
@@ -106,7 +107,7 @@ export default function AppBar() {
       <div className="app-bar__inner">
         <a href="#top" className="app-bar__brand">
           <span className="app-bar__brand-main">JKA</span>
-          <span className="app-bar__brand-sub">Jamal Karate Club</span>
+          <span className="app-bar__brand-sub">{ORG_DISPLAY_NAME}</span>
         </a>
         <nav className="app-bar__nav" aria-label="Main sections">
           <a className="app-bar__link" href="#cardio">
@@ -114,6 +115,9 @@ export default function AppBar() {
           </a>
           <a className="app-bar__link" href="#boxing">
             Boxing
+          </a>
+          <a className="app-bar__link" href="#contact">
+            Contact
           </a>
           <div className="app-bar__dropdown" ref={dropdownRef}>
             <button
